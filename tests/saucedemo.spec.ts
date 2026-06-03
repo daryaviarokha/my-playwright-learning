@@ -8,7 +8,7 @@ test('task2', async ({page}) => {
     await page.goto('/');
     await page.getByPlaceholder('Username').fill('standard_user1');
     await page.getByPlaceholder('Password').fill('secret_sauce1');
-    await page.getByRole('button', { name: 'Login'}).click();
+    await page.getByRole('button', { name: 'Login'}).click(); //test
     await expect(page.getByTestId('error'), 'Error should appear for wrong credentials').toBeVisible();
 });
 
