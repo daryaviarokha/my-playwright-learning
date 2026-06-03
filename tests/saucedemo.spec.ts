@@ -4,7 +4,7 @@ test.describe('Saucedemo', () => {
 
 test.describe('Validation Login Page', () => {
 
-test.only('task2', async ({page}) => {
+test('task2', async ({page}) => {
     await page.goto('/');
     await page.getByPlaceholder('Username').fill('standard_user1');
     await page.getByPlaceholder('Password').fill('secret_sauce1');
