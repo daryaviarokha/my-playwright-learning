@@ -30,6 +30,7 @@ test('task5', async ({page}) => {
 
 test('locked user', async ({ page }) => {
     await page.goto('/');
+    
     await page.getByPlaceholder('Username').fill('locked_out_user');
     await page.getByPlaceholder('Password').fill('secret_sauce');
     await page.getByRole('button', { name: 'Login'}).click();
