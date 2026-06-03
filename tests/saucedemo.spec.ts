@@ -28,6 +28,15 @@ test('task5', async ({page}) => {
     await expect(page.locator('.error-message-container'), "Epic sadface: Username is required").toBeVisible();
 });
 
+test('locked user', async ({ page }) => {
+    await page.goto('/');
+    await page.getByPlaceholder('Username').fill('locked_out_user');
+    await page.getByPlaceholder('Password').fill('secret_sauce');
+    await page.getByRole('button', { name: 'Login'}).click();
+    await expect(page.locator('[data-test="error"]')).toContainText(
+    "Epic sadface: Sorry, this user has been locked out");
+});
+
 }); 
 
 test.describe('Logged in User', () => {
@@ -87,7 +96,6 @@ test('state after refresh', async ({ page}) => {
     await expect(page.locator('.shopping_cart_badge'), 'Added item is stil in the bag').toHaveText("1");
 });
 }); 
-
 
 });
 
