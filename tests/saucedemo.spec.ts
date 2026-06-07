@@ -4,11 +4,11 @@ test.describe('Saucedemo', () => {
 
 test.describe('Validation Login Page', () => {
 
-test('task2', async ({page}) => {
+test('task2', async ({page}) => {  
     await page.goto('/');
     await page.getByPlaceholder('Username').fill('standard_user1');
     await page.getByPlaceholder('Password').fill('secret_sauce1');
-    await page.getByRole('button', { name: 'Login'}).click(); //test
+    await page.getByRole('button', { name: 'Login'}).click(); 
     await expect(page.getByTestId('error'), 'Error should appear for wrong credentials').toBeVisible();
 });
 
@@ -28,7 +28,7 @@ test('task5', async ({page}) => {
     await expect(page.locator('.error-message-container'), "Epic sadface: Username is required").toBeVisible();
 });
 
-test('locked user', async ({ page }) => {
+test('locked user', async ({ page }) => {  //2
     await page.goto('/');
     
     await page.getByPlaceholder('Username').fill('locked_out_user');
@@ -40,7 +40,7 @@ test('locked user', async ({ page }) => {
 
 }); 
 
-test.describe('Logged in User', () => {
+test.describe('Logged in User', () => {  // 1
     test.beforeEach(async ({page}) => {
     await page.goto('/');
     await page.getByPlaceholder('Username').fill('standard_user');
@@ -64,7 +64,7 @@ test('task4', async ({page}) => {
     await expect(page.locator(".shopping_cart_badge"),"Cart badge should not be visible after removing product").not.toBeVisible();
 });
 
-test('task7', async ({ page }) => {
+test('task7', async ({ page }) => {  //4
     await page.getByRole('button', { name: 'Add to cart'}).first().click();
     await page.getByRole('button', { name: 'Remove'}).first().click();
 
@@ -74,7 +74,7 @@ test('task7', async ({ page }) => {
     await expect(page.locator(".shopping_cart_badge"),"Cart badge should not shown 1 after adding a product").not.toBeVisible();
 });
 
-test('multiplу products', async ({ page }) => {
+test('multiplу products', async ({ page }) => {  //3
     await page.getByRole('button', { name: 'Add to cart'}).first().click();
     await page.getByRole('button', { name: 'Add to cart'}).nth(1).click();
     await page.getByRole('button', { name: 'Add to cart'}).nth(2).click();
@@ -96,7 +96,25 @@ test('state after refresh', async ({ page}) => {
     await page.reload();
     await expect(page.locator('.shopping_cart_badge'), 'Added item is stil in the bag').toHaveText("1");
 });
-}); 
 
+test('checkout', async ({ page}) => {
+    await page.goto('/');
+    await page.getByPlaceholder('Username').fill('standard_user');
+    await page.getByPlaceholder('Password').fill('secret_sauce');
+    await page.getByRole('button', { name: 'Login'}).click();
+    await page.getByRole('button', { name: 'Add to cart'}).first().click();
+    await page.locator('.shopping_cart_badge').click();
+    await expect(page, 'User should redirect to cart page').toHaveURL(/cart/);
+    await page.getByRole('button', {name: 'checkout'}).click();
+    await expect(page, 'User should redirect to Checkout step one').toHaveURL(/checkout/);
+    await page.getByPlaceholder('First Name').fill('Darya');
+    await page.getByPlaceholder('Last Name').fill('QA');
+    await page.getByPlaceholder('Zip/Postal Code').fill('1test');
+    await page.getByRole('button', {name: 'continue'}).click();
+    await expect(page, 'User should redirect to Checkout step two').toHaveURL(/checkout/);
+    await page.getByRole('button', {name: 'finish'}).click();
+    await expect(page.locator('[data-test="checkout-complete-container"]'), 'After placing order user gets success message').toContainText("Thank you for your order");
 });
 
+}); 
+});
