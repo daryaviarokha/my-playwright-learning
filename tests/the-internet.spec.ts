@@ -20,7 +20,7 @@ test('select dropdown', async ({ page }) => {
     await page.goto('https://the-internet.herokuapp.com/dropdown'); 
 
     await page.locator('#dropdown').selectOption('1');
-    await expect(page.locator('#dropdown'), 'OPtion 1 is selected').toHaveValue('1');
+    await expect(page.locator('#dropdown'), 'Option 1 is selected').toHaveValue('1');
 });
 
 test('dynamic loading ', async ({ page }) => {
