@@ -15,20 +15,20 @@ Login → product selection → cart → checkout -> sorting price from low to h
 - Cart page shows the name of the selected product
 - Removing a product updates the cart
 - Adding multiple products shows correct badge count
-- Product sorting
-- User can finish order
+- Products are sorted by price from low to high on Inventory page
+- User can complete checkout flow and gets success message 
 
 ## Project structure
-- `pages/` — Page Object classes (LoginPage, InventoryPage, CartPage, CheckoutPage)
-- `tests/` — test specs (*.spec.ts)
-- `test-data/` — credentials and test inputs
+- `saucedemo/pages/` — Page Object classes (LoginPage, InventoryPage, CartPage, CheckoutPage)
+- `saucedemo/tests/` — test specs (*.spec.ts)
+- `saucedemo/test-data/` — credentials and test inputs
 - `playwright.config.ts` — configuration
 
 ## How to run
 ```bash
 npm install
 npx playwright install
-npx playwright test saucedemo/tests
+npx playwright test saucedemo/tests --project=chromium
 npx playwright show-report
 ```
 
@@ -38,5 +38,5 @@ npx playwright show-report
 - Test data is stored separately from test logic
 
 ## Known limitations
-- This suite covers only the selected user journey
+- This suite covers only the selected user journey: login, product sorting, checkout, placing order 
 - It does not cover all possible edge cases

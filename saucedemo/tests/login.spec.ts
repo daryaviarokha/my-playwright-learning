@@ -26,7 +26,7 @@ test.describe('Login', () => {
     });
 
     test('empty username shows validation error', async ({ page }) => {
-        await loginPage.login(userWithEmptyUserName.username, userWithEmptyUserName.username);
+        await loginPage.login(userWithEmptyUserName.username, userWithEmptyUserName.password);
         await expect(loginPage.errorMessage, 'Empty username should shows validation error message').toBeVisible();
     });
 
