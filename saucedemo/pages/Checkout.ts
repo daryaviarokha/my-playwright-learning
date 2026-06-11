@@ -11,13 +11,13 @@ export class CheckoutPage {
     readonly successMessage: Locator;
 
     constructor(page: Page) {
-        this.page = page; 
+        this.page = page;
         this.firstNameField = page.getByPlaceholder('First Name');
         this.lastNameField = page.getByPlaceholder('Last Name');
         this.postalCodeField = page.getByPlaceholder('Zip/Postal Code');
-        this.checkout = page.getByRole('button', {name: 'checkout'});
-        this.continueButton = page.getByRole('button', {name: 'continue'});
-        this.finishButton = page.getByRole('button', {name: 'finish'});
+        this.checkout = page.getByRole('button', { name: 'checkout' });
+        this.continueButton = page.getByRole('button', { name: 'continue' });
+        this.finishButton = page.getByRole('button', { name: 'finish' });
         this.successMessage = page.locator('[data-test="complete-header"]');
     }
 
@@ -30,5 +30,4 @@ export class CheckoutPage {
     async proceedToCheckoutStepTwo() {
         await this.continueButton.click();
     }
-
 }

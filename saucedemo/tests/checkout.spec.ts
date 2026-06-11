@@ -3,7 +3,7 @@ import { LoginPage } from '../pages/LoginPage';
 import { InventoryPage } from '../pages/InventoryPage';
 import { CartPage } from '../pages/CartPage';
 import { CheckoutPage } from '../pages/Checkout';
-import { channel } from 'node:diagnostics_channel';
+import { standartUser } from '../test-data/users';
 
 test.describe('Checkout', () => {
     let loginPage: LoginPage;
@@ -17,12 +17,12 @@ test.describe('Checkout', () => {
         cartPage = new CartPage(page);
         checkoutPage = new CheckoutPage(page);
         await loginPage.open();
-        await loginPage.login('standard_user','secret_sauce');
+        await loginPage.login(standartUser.username, standartUser.password);
     });
 
-    test('User can enter first name, last name, and postal code', async ({ page }) => {
+    test('User can finish order', async ({ page }) => {
         await test.step('Add item to cart', async () => {
-             await inventoryPage.addToCartButton.nth(1).click();
+            await inventoryPage.addToCartButton.nth(1).click();
         });
         await test.step('Open cart page and proceed checkout', async () => {
             await inventoryPage.openCartPage();
@@ -34,7 +34,7 @@ test.describe('Checkout', () => {
         });
         await test.step('Finish Order', async () => {
             await checkoutPage.finishButton.click();
-            await expect(checkoutPage.successMessage, '')
+            await expect(checkoutPage.successMessage, 'User navigate to page and see message').toBeVisible();
         });
     });
 
