@@ -4,8 +4,8 @@ type Credentials = {
 }
 
 const standartUser: Credentials = {
-     username: 'standard_user',
-     password: 'secret_sauce',
+    username: 'standard_user',
+    password: 'secret_sauce',
 }
 
 const lockedUser: Credentials = {
@@ -19,8 +19,8 @@ const userWithWrongPassword: Credentials = {
 }
 
 const userWithEmptyUserName: Credentials = {
-     username: '',
-     password: 'secret_sauce',
+    username: '',
+    password: 'secret_sauce',
 }
 
-export { standartUser, lockedUser, userWithWrongPassword, userWithEmptyUserName}
+export { standartUser, lockedUser, userWithWrongPassword, userWithEmptyUserName }
