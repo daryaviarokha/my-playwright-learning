@@ -1,0 +1,8 @@
+# Test Plan — Automationexercise
+
+## Test Cases
+1. Checkboxes can be selected and unselected
+2. Dropdown option can be selected
+3. Dynamic loading waits for final text without hard wait
+4. File upload shows uploaded file name
+5. Broken images are detected
