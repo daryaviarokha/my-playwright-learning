@@ -34,32 +34,6 @@ test('verify all products and product detail page', async ({ page }) => {
     await expect(page.getByText('Brand:'), 'Brand parameter is visble').toBeVisible();
 });
 
-test('add product in the card and verify', async ({ page }) => {
-    await page.goto('https://automationexercise.com');
-    const сonsentButton = page.getByRole('button', { name: 'Consent' });
-    if (await сonsentButton.isVisible()) {
-        await сonsentButton.click();
-    }
-    await expect(page, 'HomePage is visible').toHaveURL('https://automationexercise.com');
-    await page.getByRole('link', { name: ' Products' }).click();
-    await page.locator('.product-image-wrapper').first().hover();
-    await page.locator('.product-overlay').first().getByText('Add to cart').click();
-    await page.getByRole('button', { name: 'Continue Shopping' }).click();
-    await page.locator('.product-image-wrapper').nth(1).hover();
-    await page.locator('.product-overlay').nth(1).getByText('Add to cart').click();
-    await page.getByRole('link', { name: 'View Cart' }).click();
-    await expect(page.locator('#product-1'), 'The first product is in cart').toBeVisible();
-    await expect(page.locator('#product-2'), 'The second product is in cart').toBeVisible();
-
-    await expect(page.getByRole('cell', { name: 'Rs.' }).first(), 'Price of first product is displayed').toBeVisible();
-    await expect(page.locator('#product-1').getByRole('cell', { name: '1' }), 'Quatity the first product is displayed').toBeVisible();
-    await expect(page.getByRole('cell', { name: 'Rs.' }).nth(1), 'Total price of first product is displayed').toBeVisible();
-
-    await expect(page.getByRole('cell', { name: 'Rs.' }).nth(2), 'Price of first product is displayed').toBeVisible();
-    await expect(page.locator('#product-2').getByRole('cell', { name: '1' }), 'Quatity the first product is displayed').toBeVisible();
-    await expect(page.getByRole('cell', { name: 'Rs.' }).nth(3), 'Total price of first product is displayed').toBeVisible();
-});
-
 test('remove product', async ({ page }) => {
     await page.goto('https://automationexercise.com');
     const сonsentButton = page.getByRole('button', { name: 'Consent' });

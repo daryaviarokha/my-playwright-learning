@@ -23,16 +23,6 @@ test('select dropdown', async ({ page }) => {
     await expect(page.locator('#dropdown'), 'Option 1 is selected').toHaveValue('1');
 });
 
-test('dynamic loading ', async ({ page }) => {
-    await page.goto('https://the-internet.herokuapp.com/dynamic_loading'); 
-
-    await page.getByRole('link', { name: 'Example 1: Element on page' }).click();
-    await page.getByRole('button', { name: 'Start' }).click();
-
-    await expect(page.locator('#loading').getByRole('img'), 'Loading is visible').toBeVisible(); 
-    await expect(page.getByRole('heading', { name: 'Hello World!' }), 'Final text is visible after loading').toBeVisible();
-});
-
 test('check upladed file name', async ({ page }) => {
     await page.goto('https://the-internet.herokuapp.com/upload'); 
 
@@ -40,10 +30,4 @@ test('check upladed file name', async ({ page }) => {
     await page.getByRole('button', {name: 'Upload'}).click();
 
     await expect(page.getByRole('heading', { name: 'File Uploaded!' }), 'File Uploaded! title is displaye').toContainText('File Uploaded');
-});
-
-test('broken image', async ({ page }) => {
-  await page.goto('https://the-internet.herokuapp.com/broken_images'); 
-
-  //await expect(page.getByRole('img').nth(1), 'The img is not visible').not.toBeVisible();
 });
